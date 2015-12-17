@@ -1,0 +1,24 @@
+<br>
+<div class='eventscontainer'>
+    <div ng-controller="eventController">
+    <ta ng-repeat="anEvent in event.events | orderBy: 'date'">
+        <div class = 'eventslist'>
+            <li class='next' >
+                <label class='date'>
+                    <span class='weekday'>{{ anEvent.month }}</span>
+                    <span class='day'>{{ anEvent.day }}</span>
+                </label>
+
+                <button class="btn btn-danger pull-right" ng-click="event.deleteEvent(anEvent._id)">Delete</button>
+                </a>
+
+                <h3>{{ anEvent.name }}</h3>
+                <p>
+                    <span class='duration'>{{ anEvent.hour }} o'clock</span>
+                    <span class='location'>{{ anEvent.message }}</span>
+                </p>
+            </li>
+        </div>
+    </ta>
+    </div>
+</div>

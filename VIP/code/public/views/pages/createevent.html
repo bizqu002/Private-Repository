@@ -1,0 +1,63 @@
+
+<br>
+
+<h1>Create Event</h1>
+
+
+<form class="InputUser" ng-submit="event.saveEvent()">
+    
+
+    
+    <div ng-controller="DatepickerDemoCtrl">
+
+    <div style="display:inline-block; min-height:290px;">
+      <uib-datepicker required ng-model="dt" ng-change="event.eventData.date=dt" min-date="minDate" show-weeks="true" class="well well-sm" custom-class="getDayClass(date, mode)"></uib-datepicker>
+
+    </div>
+        
+</div>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    <div ng-controller="TimepickerDemoCtrl">
+
+      <uib-timepicker required ng-model="mytime" ng-change="event.eventData.datetime=mytime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+
+      <hr>
+    </div>
+    
+    
+    
+    <input required type="text" class="form-control" placeholder="Event Name" ng-model="event.eventData.name" />
+    <textarea required class="form-control2" maxlength="200" rows="3" placeholder="Message" ng-model="event.eventData.message"></textarea>
+    <br>
+    <input class="btn submit-btn pull-right" type="submit" value="Create Event" />
+    
+    <br>
+    
+    
+
+</form>
+
+<div class="row show-hide-message" ng-show="event.message">
+    <div class="col-sm-6 col-sm-offset-2">
+
+        <div class="alert alert-info">
+            {{ event.message }}
+        </div>
+
+    </div>
+</div>
+
+
+<br>
+<br>
+<br>
+<br>

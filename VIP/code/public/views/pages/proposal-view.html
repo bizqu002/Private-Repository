@@ -1,0 +1,22 @@
+<div>
+    <h2>{{project.proj}}</h2>
+</div>
+<br>
+<div>
+    <p>{{project.proj_body}}</p>
+</div>
+<br>
+
+<form style="color: black" ng-submit="saveUpdateView()">
+
+    <textarea rows="4" cols="45" ng-model="project.comment" placeholder="Comment"></textarea>
+    <br>
+    <input type="radio" name="Accept" value="1" ng-model="project.status" >Accept <br>
+    <input type="radio" name="Decline" value="0" ng-model="project.status" >Decline <br>
+
+    <br>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+

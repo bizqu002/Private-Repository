@@ -1,0 +1,22 @@
+<div class="text-center" ng-controller="ProfileCtrl">
+		<h1>{{sub.uData.f_name}} {{sub.uData.l_name}}'s Profile</h1>
+		<div>
+			<img src="{{sub.picture}}"></img>
+			<p class="lead">{{sub.mail}}</p>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" ng-model="sub.checked" ng-click="sub.subscribe()"> Subscribe to FIU-VIP
+				</label>
+			</div>
+			<a class="btn" ng-click="sub.toggleEditMode()">{{sub.editmode ? 'Save Edit' : 'Edit Profile'}}
+				</a>
+				<div>User:<p> {{sub.uData.userType}}</p></div>
+			 <div>Gender:<p>{{sub.uData.sex}}</p></div>
+			 <div>Phone:<p id="cell" ng-attr-contenteditable="{{sub.editmode}}">{{sub.uData.cell}}</p></div>
+			 <div>Department: <p>{{sub.uData.Department}}</p> </div>
+			 <div>Major: <p>{{sub.uData.major}}</p> </div>
+			 <div>Project:<p>{{sub.uData.project}}</p> </div>
+			 <div>Skills: <p id="skills" ng-attr-contenteditable="{{sub.editmode}}">{{sub.uData.skills}}</p></div>
+			 <div>About Me: <p id="usum" ng-attr-contenteditable="{{sub.editmode}}">{{sub.uData.userSummary}}</p></div>
+	</div>
+</div>

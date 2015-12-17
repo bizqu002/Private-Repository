@@ -1,0 +1,38 @@
+<div>
+    <h1> VIP Membership Report</h1>
+	
+	<!-- Search and Filter fucntion -->
+    <form>
+      <font color="white">Search: </font><input ng-model="person">
+	  
+      <select ng-model="sortorder">
+        <option value="">-- sort order --</option>
+        <option value="l_name">Ascending</option>
+        <option value="-l_name">Descending</option>
+      </select>
+    </form>
+    
+	<font color="white">
+    There are <strong>{{(member.members|filter:person).length}}</strong> member(s)<span ng-show="person.length"> matching &quot;{{person}}&quot;</span> in database.	
+        
+		<!-- Table with the data -->
+		<table width="100%" border="1">
+            <th align="left">First Name</th>
+			<th align="left">Last Name</th>
+            <th align="left">Rank</th>
+			<th align="left">Project</th>
+			<th align="left">Team</th>
+
+            <tr ng-repeat="person in member.members | filter: person | orderBy: sortorder">
+                <td>{{ person.f_name }}</td>
+				<td>{{ person.l_name }}</td>
+                <td>{{ person.rank }}</td>
+				<td>{{ person.project }}</td>
+				<td>{{ person.team }}</td>
+            </tr>
+		
+        </table>
+		
+	</font>
+	
+</div>
