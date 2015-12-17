@@ -1,0 +1,96 @@
+<%@ page import="java.sql.*" %>
+<%
+String connectionURL =
+"jdbc:postgresql://cop4710-postgresql.cs.fiu.edu:5432/spr15_bizqu002?user=spr15_bizqu002&password=3886796";
+
+Connection connection = null;
+Statement statement = null;
+Statement stat1 = null;
+Statement stat2 = null;
+ResultSet rs = null;
+ResultSet r1 = null;
+ResultSet r2 =null;
+%>
+
+<html><body bgcolor="#FFFFD6">
+<button onclick="goBack()">Go to Home Page</button>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+<h2><font face = "Times New Roman"><a href="logout.jsp">Logout</font><br></h2></a>
+
+<%
+Class.forName("org.postgresql.Driver").newInstance();
+connection = DriverManager.getConnection(connectionURL);
+statement = connection.createStatement();
+stat1 = connection.createStatement();
+stat2 = connection.createStatement();
+rs = statement.executeQuery("SELECT * FROM enroll");
+%>
+<h1 align="middle"><font face="AR JULIAN" size="15">ENROLL</font></h1>
+<table border="3">
+<tr>
+<th> student_id </th>
+<th> student_name </th>
+<th> course_id </th>
+<th> course_name </th>
+<th> grade </th>
+</tr>
+<%
+while (rs.next()) {
+int student_id = rs.getInt("student_id");
+%>
+<tr>
+<td> <%out.println(student_id );%> </td>
+<%
+r1= stat1.executeQuery("SELECT name FROM students WHERE student_id=" + student_id);
+while(r1.next()){ %>
+<td> <%out.println(r1.getString("name"));%> </td>
+<%}
+r1.close();
+int course_id = rs.getInt("course_id");%>
+<td> <%out.println(course_id);%> </td>
+<%r2=stat2.executeQuery("SELECT description FROM courses WHERE course_id =" + course_id);
+while(r2.next()){%>
+<td> <%out.println(r2.getString("description"));%> </td>
+<%}
+r2.close();%>
+<td> <%out.println(rs.getString("grade"));%> </td>
+</tr>
+<%}
+rs.close();
+%>
+</table>
+<h3><font face="ravie">Delete data by Student ID...</font></h3>
+<form action="main6.jsp" method="GET">
+ID: <input type="text" name="id">
+<br />
+<input type="submit" value="Delete" />
+</form>
+<h3><font face="ravie">Insert data...</font></h3>
+<form action="main10.jsp" method="GET">
+student_id: <input type="text" name="id">
+course_id: <input type="text" name="course">
+grade: <input type="text" name="grade">
+<br />
+<input type="submit" value="Insert" /><br>
+</form>
+<h3><font face="ravie">Update data...</font></h3>
+<p>[Remember that the attributes student_name and course_name come from foreign keys]</p>
+<form action="main15.jsp" method="GET">
+student_id: <input type="text" name="id">
+attribute: <input type="text" name="attr">
+update to: <input type="text" name="update">
+<br />
+<input type="submit" value="Update" />
+</form>
+
+<button onclick="myFunction()">Reload Database/Show Updates</button>
+<script>
+function myFunction() {
+    location.reload();
+}
+</script>
+</body></html>

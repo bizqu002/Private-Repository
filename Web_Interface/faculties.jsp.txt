@@ -1,0 +1,93 @@
+<%@ page import="java.sql.*" %>
+<%
+String connectionURL =
+"jdbc:postgresql://cop4710-postgresql.cs.fiu.edu:5432/spr15_bizqu002?user=spr15_bizqu002&password=3886796";
+
+Connection connection = null;
+Statement statement = null;
+ResultSet rs = null;
+%>
+
+<html><body bgcolor="#FFFFD6">
+<button onclick="goBack()">Go to Home Page</button>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+<h2><font face = "Times New Roman"><a href="logout.jsp">Logout</font><br></h2></a>
+
+<%
+Class.forName("org.postgresql.Driver").newInstance();
+connection = DriverManager.getConnection(connectionURL);
+statement = connection.createStatement();
+rs = statement.executeQuery("SELECT * FROM faculties");
+%>
+<h1 align="middle"><font face="AR JULIAN" size="15">FACULTIES</font></h1>
+<table border ="3">
+<tr>
+<th> faculty_id </th>
+<th> name </th>
+<th> date_of_birth </th>
+<th> address </th>
+<th> email </th>
+<th> level </th>
+</tr>
+<%
+while (rs.next()) {
+%>
+<tr>
+<td> <%out.println(rs.getString("faculty_id"));%></td>
+<td> <%out.println(rs.getString("name"));%></td>
+<td> <%out.println(rs.getString("date_of_birth"));%></td>
+<td> <%out.println(rs.getString("address"));%></td>
+<td> <%out.println(rs.getString("email"));%> </td>
+<td> <%out.println(rs.getString("level"));%> </td>
+</tr>
+<%
+}
+
+rs.close();
+%>
+</table>
+<h3><font face="ravie">search by...</font></h3>
+<form action="main2.jsp" method="GET">
+Name: <input type="text" name="name">
+<br />
+<input type="submit" value="Search" />
+</form>
+<h3><font face="ravie">Delete data by Faculty ID...</font></h3>
+<form action="main5.jsp" method="GET">
+ID: <input type="text" name="id">
+<br />
+<input type="submit" value="Delete" />
+</form>
+<h3><font face="ravie">Insert data...</font></h3>
+<form action="main9.jsp" method="GET">
+faculty_id: <input type="text" name="id">
+name: <input type="text" name="name">
+date_of_birth: <input type="text" name="dob">
+address: <input type="text" name="addr">
+email: <input type="text" name="email">
+level: <input type="text" name="level">
+<br />
+<input type="submit" value="Insert" />
+</form>
+
+<h3><font face="ravie">Update data...</font></h3>
+<form action="main13.jsp" method="GET">
+faculty_id: <input type="text" name="id">
+attribute: <input type="text" name="attr">
+update to: <input type="text" name="update">
+<br />
+<input type="submit" value="Update" />
+</form>
+
+<button onclick="myFunction()">Reload Database/Show Updates</button>
+<script>
+function myFunction() {
+    location.reload();
+}
+</script>
+
+</body></html>

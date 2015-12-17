@@ -1,0 +1,51 @@
+<%@ page import="java.sql.*" %>
+<%
+String connectionURL =
+"jdbc:postgresql://cop4710-postgresql.cs.fiu.edu:5432/spr15_bizqu002?user=spr15_bizqu002&password=3886796";
+
+Connection connection = null;
+Statement statement = null;
+//Statement sta1 = null;
+ResultSet rs = null;
+//ResultSet r1 = null;
+%>
+<html><body><h1> Your results: </h1>
+<%
+Class.forName("org.postgresql.Driver").newInstance();
+connection = DriverManager.getConnection(connectionURL);
+statement = connection.createStatement();
+String descr = request.getParameter("name");
+rs = statement.executeQuery("SELECT * FROM courses WHERE description= '" + descr + "'");
+
+while (rs.next()) {
+out.println("<b>COURSE ID      : </b>" + rs.getString("course_id") + "<br>");
+out.println("<b>DESCRIPTION    : </b>" + rs.getString("description") + "<br>");
+out.println("<b>LEVEL          : </b>" + rs.getString("level") + "<br>");
+int instructor = rs.getInt("instructor");
+out.println("<b>INSTRUCTOR ID  : </b>" + instructor);
+//r1= sta1.executeQuery("SELECT name FROM faculties WHERE faculty_id=" + instructor);
+//while (r1.next()){
+//out.println("<b>INSTRUCTOR NAME: </b>" + r1.getString("name") + "<br>");
+//}
+//r1.close();
+}
+
+rs.close();
+%>
+<br><br>
+<button onclick="goBack()">Go to Courses Database</button>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+<br>
+<button onclick="goSuperBack()">Go to Home Page</button>
+<script>
+function goSuperBack() {
+    window.history.go(-2);
+}
+</script>
+<h3><font face = "Times New Roman" size="5"><a href="logout.jsp">Logout</font><br></a></h2>
+
+</body></html>

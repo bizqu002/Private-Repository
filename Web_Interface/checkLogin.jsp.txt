@@ -1,0 +1,47 @@
+<%
+String username = request.getParameter("username");
+String password = request.getParameter("password");
+out.println("WELCOME " + username);
+if (username == null || password == null) {
+
+out.println("Checking login...");
+out.print("Invalid parameters, <a href=\"newintro.jsp\">Try again</a>");
+}
+
+if ((username.equalsIgnoreCase("awood001") && password.equalsIgnoreCase("a1w")) ||
+(username.equalsIgnoreCase("hcage001") && password.equalsIgnoreCase("h2c")) ||
+(username.equalsIgnoreCase("jsmit005") && password.equalsIgnoreCase("j3s")) ||
+(username.equalsIgnoreCase("fwong001") && password.equalsIgnoreCase("f4w")) ||
+(username.equalsIgnoreCase("jking001") && password.equalsIgnoreCase("j5k")) ||
+(username.equalsIgnoreCase("ryoun001") && password.equalsIgnoreCase("r6y")) ||
+(username.equalsIgnoreCase("rpoor001") && password.equalsIgnoreCase("r7p")) ||
+(username.equalsIgnoreCase("jengl001") && password.equalsIgnoreCase("j8e")) ||
+(username.equalsIgnoreCase("bluns") && password.equalsIgnoreCase("s1b")) ||
+(username.equalsIgnoreCase("taylt") && password.equalsIgnoreCase("t2t")) ||
+(username.equalsIgnoreCase("evand") && password.equalsIgnoreCase("d3e")) ||
+(username.equalsIgnoreCase("narar") && password.equalsIgnoreCase("r4n")) ||
+(username.equalsIgnoreCase("gards") && password.equalsIgnoreCase("s5g")) ||
+(username.equalsIgnoreCase("parrw") && password.equalsIgnoreCase("w6p"))
+
+) {
+%>
+<body bgcolor="#CC9900">
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img src="http://admissions.fiu.edu/_assets/images/core/fiu-blue-small.png" alt="fiu" align="top">
+<h1 align="middle"><font face="AR JULIAN" color="#003366" size="10"> HOME  PAGE </font></h1>
+<h2 align="middle"><font face = "AR CHRISTY" size="5">See <a href="students.jsp"> Students</a> table </font><br><font face = "Comic Sans MS" size="4">Insert, delete, update, and search any information in the STUDENTS database</font></h2>
+<h2 align="middle"><font face = "AR CHRISTY" size="5">See <a href="faculties.jsp">Faculties</a> table </font><br><font face = "Comic Sans MS" size ="4">Insert, delete, update, and search any information in the FACULTIES database</font></h2>
+<h2 align="middle"><font face = "AR CHRISTY" size="5">See <a href="courses.jsp">Courses</a> table </font><br><font face = "Comic Sans MS" size="4">Insert, delete, update, and search any information in the COURSES database</font></h2>
+<h2 align="middle"><font face = "AR CHRISTY" size="5">See <a href="enroll.jsp">Enroll</a> table </font><br><font face = "Comic Sans MS" size="4">Insert, delete, update, and search any information in the ENROLL database</font></h2>
+<br>
+<h3 align="middle"><font face = "verdana">Go to <a href="http://www.cis.fiu.edu/">http://www.cis.fiu.edu/</a></font></h3>
+<h3 align="middle"><font face = "verdana"><a href="logout.jsp">Logout</a></font></h3>
+</body>
+<%
+session.setAttribute("username", username);
+}
+else
+{
+out.print("Invalid username and password, <a href=\"newintro.jsp\">Try again</a>");
+}
+%>
+

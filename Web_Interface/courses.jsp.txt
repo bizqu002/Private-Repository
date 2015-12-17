@@ -1,0 +1,89 @@
+<%@ page import="java.sql.*" %>
+<%
+String connectionURL =
+"jdbc:postgresql://cop4710-postgresql.cs.fiu.edu:5432/spr15_bizqu002?user=spr15_bizqu002&password=3886796";
+
+Connection connection = null;
+Statement statement = null;
+Statement another = null;
+ResultSet rs = null;
+ResultSet set =null;
+%>
+
+<html><body bgcolor="#FFFFD6">
+<button onclick="goBack()">Go to Home Page</button>
+<script>
+function goBack(){
+window.history.back();
+}
+</script>
+<h2><font face = "Times New Roman"><a href="logout.jsp">Logout</a></font><br></h2>
+<%
+Class.forName("org.postgresql.Driver").newInstance();
+connection = DriverManager.getConnection(connectionURL);
+statement = connection.createStatement();
+another = connection.createStatement();
+rs = statement.executeQuery("SELECT * FROM courses");
+%>
+<h1 align="middle"><font face="AR JULIAN" size="15">COURSES</font></h1>
+<table border="3">
+<tr>
+<th> course_id </th>
+<th> description </th>
+<th> level </th>
+<th> instructor </th>
+</tr>
+<%
+while (rs.next()) {%>
+<tr>
+<td> <%out.println(rs.getString("course_id"));%> </td>
+<td> <%out.println(rs.getString("description"));%> </td>
+<td> <%out.println(rs.getString("level"));%> </td>
+<%set = another.executeQuery("SELECT name FROM faculties WHERE faculty_id ="+ rs.getInt("instructor"));
+while(set.next()){%>
+<td> <%out.println(set.getString("name"));%> </td>
+</tr><%
+} set.close();
+}
+rs.close();
+%>
+</table>
+<h3><font face="ravie">Search by...</font></h3>
+<form action="main3.jsp" method="GET">
+Description: <input type="text" name="name">
+<br />
+<input type="submit" value="Search" />
+</form>
+<h3><font face="ravie">Delete data by Course ID...</font></h3>
+<form action="main7.jsp" method="GET">
+ID: <input type="text" name="id">
+<br />
+<input type="submit" value="Delete" />
+</form>
+<h3><font face="ravie">Insert data...</font></h3>
+<form action="main11.jsp" method="GET">
+course_id: <input type="text" name="id">
+description: <input type="text" name="course">
+level: <input type="text" name="grade">
+instructor (id): <input type="text" name="inst">
+<br />
+<input type="submit" value="Insert" />
+</form>
+
+<h3><font face="ravie">Update data...</font></h3>
+<form action="main14.jsp" method="PUT">
+course_id: <input type="text" name="id">
+attribute: <input type="text" name="attr">
+update to: <input type="text" name="update">
+<br />
+<input type="submit" value="Update" />
+</form>
+
+<button onclick="myFunction()">Reload Database/Show Updates</button>
+<script>
+function myFunction() {
+location.reload();
+}
+</script>
+</body></html>
+

@@ -1,0 +1,28 @@
+<%@ page import="java.sql.*" %>
+<%
+String connectionURL =
+"jdbc:postgresql://cop4710-postgresql.cs.fiu.edu:5432/spr15_bizqu002?user=spr15_bizqu002&password=3886796";
+Connection connection = null;
+Statement statement = null;
+int rs;
+Class.forName("org.postgresql.Driver").newInstance();
+connection = DriverManager.getConnection(connectionURL);
+statement = connection.createStatement();
+String descr = request.getParameter("id");
+rs = statement.executeUpdate("DELETE FROM courses WHERE course_id= '" + descr + "'");
+%>
+<html><body>
+<button onclick="goBack()">Go Back</button>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+<button onclick="goSuperBack()">Go to Home Page</button>
+<script>
+function goSuperBack() {
+    window.history.go(-2);
+}
+</script>
+<h3><font face = "Times New Roman" size="5"><a href="logout.jsp">Logout</font><br></h2>
+</body></html>

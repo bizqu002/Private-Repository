@@ -1,0 +1,13 @@
+<%
+String username=(String)session.getAttribute("username");
+if(username!=null)
+{
+out.println(username + " logged out, <a href=\"newintro.jsp\">Login</a>");
+session.removeAttribute("username");
+
+}
+else
+{
+out.println("You are already not logged in, <a href=\"newintro.jsp\">Login</a>");
+}
+%>
